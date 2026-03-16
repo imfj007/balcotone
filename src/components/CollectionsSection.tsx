@@ -33,7 +33,7 @@ export default function CollectionsSection() {
           {COLLECTIONS.map((collection) => (
             <Link
               key={collection.id}
-              href={/collections/}
+              href={`/collections/${collection.id}`}
               className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition-all hover:scale-[1.02]"
             >
               <div className="aspect-[3/4] overflow-hidden">
