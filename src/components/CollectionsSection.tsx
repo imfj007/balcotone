@@ -8,19 +8,19 @@ const COLLECTIONS = [
   {
     id: "essentials",
     name: "Summer Essentials",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+    image: "https://picsum.photos/seed/tshirt/800/800",
     description: "Daily staples for the modern man.",
   },
   {
     id: "outerwear",
     name: "Premium Outerwear",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+    image: "https://picsum.photos/seed/jacket/800/800",
     description: "Structured layers for any weather.",
   },
   {
     id: "loungewear",
     name: "Cozy Loungewear",
-    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
+    image: "https://picsum.photos/seed/hoodie/800/800",
     description: "Luxury comfort for refined relaxing.",
   },
 ];

@@ -17,7 +17,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="aspect-square rounded-3xl overflow-hidden bg-zinc-900 border-8 border-zinc-800 rotate-3">
-             <Image src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" alt="Balcotone Workshop" width={800} height={800} className="w-full h-full object-cover" />
+             <Image src="https://picsum.photos/seed/tshirt/800/800" alt="Balcotone Workshop" width={800} height={800} className="w-full h-full object-cover" />
           </div>
         </div>
       </Bounded>
