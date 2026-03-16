@@ -7,19 +7,19 @@ import Image from "next/image";
 
 const PRODUCT_DATA = {
   essentials: [
-    { id: "tshirt", name: "Classic T-Shirt", price: "$49", image: "/tshirt.jpg" },
-    { id: "casual", name: "Casual Overshirt", price: "$59", image: "/casual.jpg" },
-    { id: "v-neck", name: "V-Neck Tee", price: "$49", image: "/tshirt.jpg" },
+    { id: "tshirt", name: "Classic T-Shirt", price: "PKR 1,999", image: "/tshirt.jpg" },
+    { id: "casual", name: "Casual Overshirt", price: "PKR 2,999", image: "/casual.jpg" },
+    { id: "v-neck", name: "V-Neck Tee", price: "PKR 1,999", image: "/tshirt.jpg" },
   ],
   outerwear: [
-    { id: "jacket", name: "Bomber Jacket", price: "$189", image: "/jacket.jpg" },
-    { id: "hoodie", name: "Premium Hoodie", price: "$129", image: "/hoodie.jpg" },
-    { id: "coat", name: "Winter Coat", price: "$249", image: "/jacket.jpg" },
+    { id: "jacket", name: "Bomber Jacket", price: "PKR 6,999", image: "/jacket.jpg" },
+    { id: "hoodie", name: "Premium Hoodie", price: "PKR 5,499", image: "/hoodie.jpg" },
+    { id: "coat", name: "Winter Coat", price: "PKR 6,999", image: "/jacket.jpg" },
   ],
   loungewear: [
-    { id: "sweatpants", name: "Lounge Pants", price: "$89", image: "/pants.jpg" },
-    { id: "sweatshirt", name: "Crew Sweatshirt", price: "$99", image: "/hoodie.jpg" },
-    { id: "shorts", name: "Cozy Shorts", price: "$49", image: "/casual.jpg" },
+    { id: "sweatpants", name: "Lounge Pants", price: "PKR 3,499", image: "/pants.jpg" },
+    { id: "sweatshirt", name: "Crew Sweatshirt", price: "PKR 4,499", image: "/hoodie.jpg" },
+    { id: "shorts", name: "Cozy Shorts", price: "PKR 1,999", image: "/casual.jpg" },
   ],
 };
 
