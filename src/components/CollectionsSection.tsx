@@ -14,7 +14,7 @@ const COLLECTIONS = [
   {
     id: "outerwear",
     name: "Premium Outerwear",
-    image: "https://picsum.photos/seed/jacket/800/800",
+    image: "https://picsum.photos/seed/mensjacket/800/1000",
     description: "Structured layers for any weather.",
   },
   {
