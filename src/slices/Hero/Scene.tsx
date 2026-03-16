@@ -123,7 +123,7 @@ export default function Scene({}: Props) {
       <group ref={product1GroupRef}>
         <FloatingProduct
           ref={product1ref}
-          productId="tshirt"
+          productId="hoodie"
           floatSpeed={FLOAT_SPEED}
         />
       </group>
