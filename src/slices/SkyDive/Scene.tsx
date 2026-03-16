@@ -1,8 +1,7 @@
 "use client";
 
-import FloatingCan from "@/components/FloatingCan";
+import FloatingProduct from "@/components/FloatingProduct";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Content } from "@prismicio/client";
 import {
   Cloud,
   Clouds,
@@ -19,22 +18,20 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type SkyDiveProps = {
-  sentence: string | null;
-  flavor: Content.SkyDiveSliceDefaultPrimary["flavor"];
+  sentence?: string;
 };
 
-export default function Scene({ sentence, flavor }: SkyDiveProps) {
+export default function Scene({ sentence = "Luxury Comfort" }: SkyDiveProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const canRef = useRef<THREE.Group>(null);
+  const productRef = useRef<THREE.Group>(null);
   const cloud1Ref = useRef<THREE.Group>(null);
   const cloud2Ref = useRef<THREE.Group>(null);
   const cloudsRef = useRef<THREE.Group>(null);
   const wordsRef = useRef<THREE.Group>(null);
 
-  const ANGLE = 75 * (Math.PI / 180); // this is 75 degrees
+  const ANGLE = 75 * (Math.PI / 180);
 
   const getXPosition = (distance: number) => distance * Math.cos(ANGLE);
-
   const getYPosition = (distance: number) => distance * Math.sin(ANGLE);
 
   const getXYPosition = (distance: number) => ({
@@ -45,17 +42,15 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
   useGSAP(() => {
     if (
       !cloudsRef.current ||
-      !canRef.current ||
+      !productRef.current ||
       !wordsRef.current ||
       !cloud1Ref.current ||
       !cloud2Ref.current
     )
       return;
 
-    /* set initial positions -- */
-
     gsap.set(cloudsRef.current.position, { z: 10 });
-    gsap.set(canRef.current.position, {
+    gsap.set(productRef.current.position, {
       ...getXYPosition(-4),
     });
 
@@ -67,16 +62,12 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       },
     );
 
-    /*  spinning can -- */
-
-    gsap.to(canRef.current.rotation, {
+    gsap.to(productRef.current.rotation, {
       y: Math.PI * 2,
       duration: 1.7,
       repeat: -1,
       ease: "none",
     });
-
-    /* infinite cloud movement -- */
 
     const DISTANCE = 15;
     const DURATION = 6;
@@ -85,7 +76,6 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       ...getXYPosition(DISTANCE),
     });
 
-    /* moving cloud 1 diagonally to topleft */
     gsap.to(cloud1Ref.current.position, {
       y: `+=${getYPosition(DISTANCE * 2)}`,
       x: `+=${getXPosition(DISTANCE * -2)}`,
@@ -94,7 +84,6 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       duration: DURATION,
     });
 
-    /* moving cloud 2 diagonally to topleft */
     gsap.to(cloud2Ref.current.position, {
       y: `+=${getYPosition(DISTANCE * 2)}`,
       x: `+=${getXPosition(DISTANCE * -2)}`,
@@ -116,12 +105,12 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
 
     scrollTl
       .to("body", {
-        backgroundColor: "#C0F0F5",
+        backgroundColor: "#000000",
         overwrite: "auto",
         duration: "0.1",
       })
       .to(cloudsRef.current.position, { z: 0, duration: 0.3 }, 0)
-      .to(canRef.current.position, {
+      .to(productRef.current.position, {
         x: 0,
         y: 0,
         duration: 0.3,
@@ -138,7 +127,7 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
         },
         0,
       )
-      .to(canRef.current.position, {
+      .to(productRef.current.position, {
         ...getXYPosition(4),
         duration: 0.5,
         ease: "back.in(1.7)",
@@ -151,35 +140,28 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
   return (
     <group ref={groupRef}>
       <group rotation={[0, 0, 0.5]}>
-        {" "}
-        <FloatingCan
-          ref={canRef}
-          flavor={flavor}
+        <FloatingProduct
+          ref={productRef}
+          productId="hoodie"
           rotationIntensity={0}
           floatIntensity={3}
           floatSpeed={3}
         >
-
-        <pointLight intensity={30} color={"#8C0413"} decay={0.6}></pointLight>
-
-        </FloatingCan>
+          <pointLight intensity={30} color={"#ffffff"} decay={0.6}></pointLight>
+        </FloatingProduct>
       </group>
-
-      {/*  clouds */}
 
       <Clouds ref={cloudsRef}>
-        <Cloud ref={cloud1Ref} bounds={[10, 10, 2]} />
-        <Cloud ref={cloud2Ref} bounds={[10, 10, 2]} />
+        <Cloud ref={cloud1Ref} bounds={[10, 10, 2]} color="#111827" />
+        <Cloud ref={cloud2Ref} bounds={[10, 10, 2]} color="#111827" />
       </Clouds>
 
-      {/* text */}
       <group ref={wordsRef}>
-        {sentence && <ThreeText sentence={sentence} color="#F97315" />}
+        {sentence && <ThreeText sentence={sentence} color="#ffffff" />}
       </group>
 
-      {/* lights */}
-      <ambientLight intensity={2} color="#9DDEFA" />
-      <Environment files="/hdr/field.hdr" environmentIntensity={1.5} />
+      <ambientLight intensity={1} color="#ffffff" />
+      <Environment files="/hdr/field.hdr" environmentIntensity={1} />
     </group>
   );
 }
@@ -192,7 +174,6 @@ function ThreeText({
   color?: string;
 }) {
   const words = sentence.toUpperCase().split(" ");
-
   const material = new THREE.MeshLambertMaterial();
   const isDesktop = useMediaQuery("(min-width: 950px)", true);
 

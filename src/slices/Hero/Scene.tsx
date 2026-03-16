@@ -1,7 +1,7 @@
 "use client";
 
 import { Environment } from "@react-three/drei";
-import FloatingCan from "@/components/FloatingCan";
+import FloatingProduct from "@/components/FloatingProduct";
 import { useRef } from "react";
 import { Group } from "three";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -18,14 +18,14 @@ export default function Scene({}: Props) {
 
   const isReady = useStore((state) => state.isReady);
 
-  const can1ref = useRef<Group>(null);
-  const can2ref = useRef<Group>(null);
-  const can3ref = useRef<Group>(null);
-  const can4ref = useRef<Group>(null);
-  const can5ref = useRef<Group>(null);
+  const product1ref = useRef<Group>(null);
+  const product2ref = useRef<Group>(null);
+  const product3ref = useRef<Group>(null);
+  const product4ref = useRef<Group>(null);
+  const product5ref = useRef<Group>(null);
 
-  const can1GroupRef = useRef<Group>(null);
-  const can2GroupRef = useRef<Group>(null);
+  const product1GroupRef = useRef<Group>(null);
+  const product2GroupRef = useRef<Group>(null);
 
   const groupRef = useRef<Group>(null);
 
@@ -33,13 +33,13 @@ export default function Scene({}: Props) {
 
   useGSAP(() => {
     if (
-      !can1ref.current ||
-      !can2ref.current ||
-      !can3ref.current ||
-      !can4ref.current ||
-      !can5ref.current ||
-      !can1GroupRef.current ||
-      !can2GroupRef.current ||
+      !product1ref.current ||
+      !product2ref.current ||
+      !product3ref.current ||
+      !product4ref.current ||
+      !product5ref.current ||
+      !product1GroupRef.current ||
+      !product2GroupRef.current ||
       !groupRef.current
     )
       return;
@@ -48,19 +48,18 @@ export default function Scene({}: Props) {
 
     // Animation
 
-    gsap.set(can1ref.current.position, { x: -1.5 });
-    gsap.set(can1ref.current.rotation, { z: -0.5 });
+    gsap.set(product1ref.current.position, { x: -1.5 });
+    gsap.set(product1ref.current.rotation, { z: -0.5 });
 
-    gsap.set(can2ref.current.position, { x: 1.5 });
-    gsap.set(can2ref.current.rotation, { z: 0.5 });
+    gsap.set(product2ref.current.position, { x: 1.5 });
+    gsap.set(product2ref.current.rotation, { z: 0.5 });
 
-    gsap.set(can3ref.current.position, { y: 5, z: 2 });
-    gsap.set(can4ref.current.position, { x: 2, y: 4, z: 2 });
-    gsap.set(can5ref.current.position, { y: -5 });
+    gsap.set(product3ref.current.position, { y: 5, z: 2 });
+    gsap.set(product4ref.current.position, { x: 2, y: 4, z: 2 });
+    gsap.set(product5ref.current.position, { y: -5 });
 
     const introTl = gsap.timeline({
       defaults: {
-        // these properties will be applied to any tween on the intro timeline
         duration: 3,
         ease: "back.out(1.4)",
       },
@@ -69,10 +68,10 @@ export default function Scene({}: Props) {
 
     if (window.scrollY < 20) {
       introTl
-      .from(can1GroupRef.current.position, { y: -5, x: 1 }, 0)
-      .from(can1GroupRef.current.rotation, { z: 3 }, 0)
-      .from(can2GroupRef.current.position, { y: 5, x: 1 }, 0)
-      .from(can2GroupRef.current.rotation, { z: 3 }, 0);
+      .from(product1GroupRef.current.position, { y: -5, x: 1 }, 0)
+      .from(product1GroupRef.current.rotation, { z: 3 }, 0)
+      .from(product2GroupRef.current.position, { y: 5, x: 1 }, 0)
+      .from(product2GroupRef.current.rotation, { z: 3 }, 0);
     }
 
 
@@ -89,33 +88,29 @@ export default function Scene({}: Props) {
       },
     });
 
-    // these all will fire at start of our animation --
-
     scrollTl
-      // rotate can group by 360 degrees
       .to(groupRef.current.rotation, { y: Math.PI * 2 })
 
-      // can1 - blackcherry
-      .to(can1ref.current.position, { x: -0.2, y: -0.7, z: -2 }, 0)
-      .to(can1ref.current.rotation, { z: 0.3 }, 0)
+      // product1
+      .to(product1ref.current.position, { x: -0.2, y: -0.7, z: -2 }, 0)
+      .to(product1ref.current.rotation, { z: 0.3 }, 0)
 
-      // can2 - Lime
-      .to(can2ref.current.position, { x: 1, y: -0.2, z: -1 }, 0)
-      .to(can2ref.current.rotation, { z: 0 }, 0)
+      // product2
+      .to(product2ref.current.position, { x: 1, y: -0.2, z: -1 }, 0)
+      .to(product2ref.current.rotation, { z: 0 }, 0)
 
-      // can3- grape
-      .to(can3ref.current.position, { x: -0.3, y: 0.5, z: -1 }, 0)
-      .to(can3ref.current.rotation, { z: -0.1 }, 0)
+      // product3
+      .to(product3ref.current.position, { x: -0.3, y: 0.5, z: -1 }, 0)
+      .to(product3ref.current.rotation, { z: -0.1 }, 0)
 
-      // can4 - strawberryLemonade
-      .to(can4ref.current.position, { x: 0, y: -0.3, z: 0.5 }, 0)
-      .to(can4ref.current.rotation, { z: 0.3 }, 0)
+      // product4
+      .to(product4ref.current.position, { x: 0, y: -0.3, z: 0.5 }, 0)
+      .to(product4ref.current.rotation, { z: 0.3 }, 0)
 
-      // can4 - watermelon
-      .to(can5ref.current.position, { x: 0.3, y: 0.5, z: -0.5 }, 0)
-      .to(can5ref.current.rotation, { z: -0.25 }, 0)
+      // product5
+      .to(product5ref.current.position, { x: 0.3, y: 0.5, z: -0.5 }, 0)
+      .to(product5ref.current.rotation, { z: -0.25 }, 0)
 
-      // now that all cans are on screen, shift the entire group towards right
       .to(
         groupRef.current.position,
         { x: 1, duration: 3, ease: "sign.inOut" },
@@ -125,30 +120,30 @@ export default function Scene({}: Props) {
 
   return (
     <group ref={groupRef}>
-      <group ref={can1GroupRef}>
-        <FloatingCan
-          ref={can1ref}
-          flavor="blackCherry"
+      <group ref={product1GroupRef}>
+        <FloatingProduct
+          ref={product1ref}
+          productId="tshirt"
           floatSpeed={FLOAT_SPEED}
         />
       </group>
 
-      <group ref={can2GroupRef}>
-        <FloatingCan
-          ref={can2ref}
-          flavor="lemonLime"
+      <group ref={product2GroupRef}>
+        <FloatingProduct
+          ref={product2ref}
+          productId="hoodie"
           floatSpeed={FLOAT_SPEED}
         />
       </group>
 
-      <FloatingCan ref={can3ref} flavor="grape" floatSpeed={FLOAT_SPEED} />
+      <FloatingProduct ref={product3ref} productId="jacket" floatSpeed={FLOAT_SPEED} />
 
-      <FloatingCan
-        ref={can4ref}
-        flavor="strawberryLemonade"
+      <FloatingProduct
+        ref={product4ref}
+        productId="sweatpants"
         floatSpeed={FLOAT_SPEED}
       />
-      <FloatingCan ref={can5ref} flavor="watermelon" floatSpeed={FLOAT_SPEED} />
+      <FloatingProduct ref={product5ref} productId="cap" floatSpeed={FLOAT_SPEED} />
 
       <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
     </group>

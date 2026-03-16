@@ -1,5 +1,3 @@
-import { PrismicPreview } from "@prismicio/next";
-import { repositoryName } from "@/prismicio";
 import localFont from 'next/font/local'
 
 import "./app.css"
@@ -23,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={alpino.variable}>
-      <body className="overflow-x-hidden bg-yellow-300">
+      <body className="overflow-x-hidden bg-black text-white selection:bg-white selection:text-black">
         <Header />
         <main> 
           {children}
@@ -31,7 +29,6 @@ export default function RootLayout({
         </main>
         <Footer/>
       </body>
-      <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
 }

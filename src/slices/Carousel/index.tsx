@@ -1,9 +1,7 @@
 "use client";
 
-import FloatingCan from "@/components/FloatingCan";
-import { SodaCanProps } from "@/components/SodaCan";
-import { Content } from "@prismicio/client";
-import { PrismicText, SliceComponentProps } from "@prismicio/react";
+import FloatingProduct from "@/components/FloatingProduct";
+import { ProductId, products } from "@/data/products";
 import { Center, Environment, View } from "@react-three/drei";
 import { useRef, useState } from "react";
 import { ArrowIcon } from "./ArrowIcon";
@@ -13,50 +11,36 @@ import { Group } from "three";
 
 import gsap from "gsap";
 
-const SPINS_ON_CHANGE = 8;
+const SPINS_ON_CHANGE = 4;
 
-const FLAVORS: {
-  flavor: SodaCanProps["flavor"];
+const CLOTHING_ITEMS: {
+  productId: ProductId;
   color: string;
   name: string;
 }[] = [
-  { flavor: "blackCherry", color: "#710523", name: "Black Cherry" },
-  { flavor: "grape", color: "#572981", name: "Grape Goodness" },
-  { flavor: "lemonLime", color: "#164405", name: "Lemon Lime" },
-  {
-    flavor: "strawberryLemonade",
-    color: "#690B3D",
-    name: "Strawberry Lemonade",
-  },
-  { flavor: "watermelon", color: "#4B7002", name: "Watermelon Crush" },
+  { productId: "tshirt", color: "#111827", name: "Premium T-Shirt" },
+  { productId: "hoodie", color: "#000000", name: "Essential Hoodie" },
+  { productId: "jacket", color: "#1e3a8a", name: "Modern Jacket" },
+  { productId: "sweatpants", color: "#374151", name: "Luxury Sweatpants" },
+  { productId: "cap", color: "#000000", name: "Signature Cap" },
 ];
 
-/**
- * Props for `Carousel`.
- */
-export type CarouselProps = SliceComponentProps<Content.CarouselSlice>;
+const Carousel = (): JSX.Element => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const productRef = useRef<Group>(null);
 
-/**
- * Component for "Carousel" Slices.
- */
-const Carousel = ({ slice }: CarouselProps): JSX.Element => {
-  const [currentFlavorIndex, setCurrentFlavorIndex] = useState(0);
-
-  const sodaCanRef = useRef<Group>(null);
-
-  // cycle through an array repeatedly without needing conditionals to check the bounds.
-  function changeFlavor(index: number) {
-    if (!sodaCanRef.current) return;
-    const nextIndex = (index + FLAVORS.length) % FLAVORS.length;
+  function changeProduct(index: number) {
+    if (!productRef.current) return;
+    const nextIndex = (index + CLOTHING_ITEMS.length) % CLOTHING_ITEMS.length;
 
     const tl = gsap.timeline();
 
     tl.to(
-      sodaCanRef.current.rotation,
+      productRef.current.rotation,
       {
         y:
-          index > currentFlavorIndex
-            ? `-=${Math.PI * 2 * SPINS_ON_CHANGE}` // -ve 8 rotations
+          index > currentIndex
+            ? `-=${Math.PI * 2 * SPINS_ON_CHANGE}`
             : `+=${Math.PI * 2 * SPINS_ON_CHANGE}`,
         ease: "power2.inOut",
         duration: 1,
@@ -66,8 +50,8 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       .to(
         ".background, .wavy-circles-outer, .-wavy-circles-inner",
         {
-          backgroundColor: FLAVORS[nextIndex].color,
-          fill: FLAVORS[nextIndex].color,
+          backgroundColor: CLOTHING_ITEMS[nextIndex].color,
+          fill: CLOTHING_ITEMS[nextIndex].color,
           ease: "power2.inOut",
           duration: 1,
         },
@@ -82,7 +66,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
         },
         0,
       )
-      .to({}, { onStart: () => setCurrentFlavorIndex(nextIndex) }, 0.5)
+      .to({}, { onStart: () => setCurrentIndex(nextIndex) }, 0.5)
       .to(
         ".text-wrapper",
         {
@@ -92,41 +76,34 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
         },
         0.7,
       );
-
   }
 
   return (
     <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="carousel grid-rows-[auto, 4fr, auto] relative grid h-screen justify-center overflow-hidden bg-white py-12 text-white"
+      className="carousel grid-rows-[auto, 4fr, auto] relative grid h-screen justify-center overflow-hidden bg-black py-12 text-white"
     >
-      <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
+      <div className="background pointer-events-none absolute inset-0 bg-zinc-900 opacity-50" />
 
-      <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-[#710523]" />
+      <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-zinc-800" />
 
-      <h2 className="relative text-center text-5xl font-bold">
-        <PrismicText field={slice.primary.heading} />
+      <h2 className="relative text-center text-5xl font-black uppercase tracking-widest">
+        Our Collection
       </h2>
 
       <div className="grid grid-cols-[auto,auto,auto] items-center">
-        {/* left */}
-
         <ArrowButton
-          onClick={() => changeFlavor(currentFlavorIndex - 1)}
+          onClick={() => changeProduct(currentIndex - 1)}
           direction="left"
-          label="Previous Flavor"
+          label="Previous Item"
         ></ArrowButton>
-
-        {/* can */}
 
         <View className="aspect-square h-[70vmin] min-h-40">
           <Center position={[0, 0, 1.5]}>
-            <FloatingCan
+            <FloatingProduct
               floatIntensity={0.3}
               rotationIntensity={1}
-              flavor={FLAVORS[currentFlavorIndex].flavor}
-              ref={sodaCanRef}
+              productId={CLOTHING_ITEMS[currentIndex].productId}
+              ref={productRef}
             />
           </Center>
           <Environment
@@ -134,26 +111,23 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
             environmentIntensity={0.6}
             environmentRotation={[0, 3, 0]}
           />
-
           <directionalLight intensity={6} position={[0, 1, 1]} />
         </View>
 
-        {/* right */}
-
         <ArrowButton
-          onClick={() => changeFlavor(currentFlavorIndex + 1)}
+          onClick={() => changeProduct(currentIndex + 1)}
           direction="right"
-          label="Next Flavor"
+          label="Next Item"
         ></ArrowButton>
       </div>
 
       <div className="text-area relative mx-auto text-center">
-        <div className="text-wrapper text-4xl font-medium">
-          <p>{FLAVORS[currentFlavorIndex].name}</p>
+        <div className="text-wrapper text-4xl font-black uppercase">
+          <p>{CLOTHING_ITEMS[currentIndex].name}</p>
         </div>
 
-        <div className="mt-2 text-2xl font-normal opacity-90">
-          <PrismicText field={slice.primary.price_copy} />
+        <div className="mt-2 text-2xl font-normal opacity-90 text-zinc-400">
+          Starting from $49.00
         </div>
       </div>
     </section>

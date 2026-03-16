@@ -1,6 +1,6 @@
 "use client";
 
-import FloatingCan from "@/components/FloatingCan";
+import FloatingProduct from "@/components/FloatingProduct";
 import { Environment } from "@react-three/drei";
 import { useRef } from "react";
 import { Group } from "three";
@@ -12,19 +12,14 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type Props = {};
-
-export default function Scene({}: Props) {
-  const canRef = useRef<Group>(null);
-
-  const bgColors = ["#FFA6B5", "#E9CFF6", "#CBEF9A"];
-
-  // we only render our view component if isDesktop is true
+export default function Scene() {
+  const productRef = useRef<Group>(null);
+  const bgColors = ["#000000", "#09090b", "#18181b"];
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   useGSAP(
     () => {
-      if (!canRef.current) return;
+      if (!productRef.current) return;
 
       const sections = gsap.utils.toArray(".alternating-section");
 
@@ -40,23 +35,21 @@ export default function Scene({}: Props) {
       });
 
       sections.forEach((_, index) => {
-        if (!canRef.current) return;
-
+        if (!productRef.current) return;
         if (index === 0) return;
 
         const isOdd = index % 2 !== 0;
-
         const xPosition = isDesktop ? (isOdd ? "-1" : "1") : 0;
         const yRotation = isDesktop ? (isOdd ? ".4" : "-.4") : 0;
 
         scrollTl
-          .to(canRef.current.position, {
+          .to(productRef.current.position, {
             x: xPosition,
             ease: "circ.inOut",
             delay: 0.5,
           })
           .to(
-            canRef.current.rotation,
+            productRef.current.rotation,
             {
               y: yRotation,
               ease: "back.inOut",
@@ -73,11 +66,11 @@ export default function Scene({}: Props) {
 
   return (
     <group
-      ref={canRef}
+      ref={productRef}
       position-x={isDesktop ? 1 : 0}
       rotation-y={isDesktop ? -0.3 : 0}
     >
-      <FloatingCan flavor="strawberryLemonade" ref={canRef} />
+      <FloatingProduct productId="jacket" />
       <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
     </group>
   );

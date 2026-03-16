@@ -1,9 +1,5 @@
 "use client";
 
-import { asText, Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
 import { TextSplitter } from "@/components/TextSplitter";
@@ -13,30 +9,19 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { View } from "@react-three/drei";
 import Scene from "./Scene";
-import { Bubbles } from "./Bubbles";
+// import { Bubbles } from "./Bubbles"; // Removed bubbles for a cleaner premium look
 
 import { useStore } from "@/hooks/useStore";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Props for `Hero`.
- */
-export type HeroProps = SliceComponentProps<Content.HeroSlice>;
-
-/**
- * Component for "Hero" Slices.
- */
-const Hero = ({ slice }: HeroProps): JSX.Element => {
+const Hero = (): JSX.Element => {
   const ready = useStore((state) => state.ready);
-
-  // we only render our view component if isDesktop is true
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   useGSAP(
     () => {
-      // if we are on desktop and not ready, then don't load anything
       if (!ready && isDesktop) return;
 
       const introTL = gsap.timeline();
@@ -81,10 +66,10 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         .fromTo(
           "body",
           {
-            backgroundColor: "#FDE047",
+            backgroundColor: "#0a0a0a",
           },
           {
-            backgroundColor: "#D9F99D",
+            backgroundColor: "#111827",
             overwrite: "auto",
           },
           1.5,
@@ -108,55 +93,47 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 
   return (
     <Bounded
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
       className="hero opacity-0"
     >
       {isDesktop && (
         <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
           <Scene />
-          <Bubbles speed={2} />
         </View>
       )}
 
       <div className="grid">
         <div className="grid h-screen place-content-center">
           <div className="grid auto-rows-min place-items-center text-center">
-            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
+            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-white md:text-[9rem] lg:text-[13rem]">
               <TextSplitter
-                text={asText(slice.primary.heading)}
+                text="Balcotone"
                 wordDisplayStyle="block"
                 className="hero-header-word"
               />
             </h1>
 
-            <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
-              <PrismicRichText field={slice.primary.subheading} />
+            <div className="hero-subheading mt-12 text-5xl font-semibold text-zinc-400 lg:text-6xl">
+              Premium Men's Essentials
             </div>
 
-            <div className="hero-body text-2xl font-normal text-sky-950">
-              <PrismicRichText field={slice.primary.body} />
+            <div className="hero-body text-2xl font-normal text-zinc-500 max-w-2xl mt-4">
+              Redefining modern masculinity with timeless designs and superior comfort. Crafted for the ambitious man.
             </div>
 
             <Button
-              buttonLink={slice.primary.button_link}
-              buttonText={slice.primary.button_text}
+              buttonLink="#"
+              buttonText="Shop Collection"
               className="hero-button mt-12"
             />
           </div>
         </div>
         <div className="text-side relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
           <div>
-            <PrismicNextImage
-              className="w-full md:hidden"
-              field={slice.primary.cans_image}
-            />
-            <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
-              <TextSplitter text={asText(slice.primary.second_heading)} />
-              {/* <PrismicRichText field={slice.primary.second_heading} /> */}
+            <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-white lg:text-8xl">
+              <TextSplitter text="Elevated Style" />
             </h2>
-            <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-slate-950">
-              <PrismicRichText field={slice.primary.second_body} />
+            <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-zinc-400">
+              Discover our latest collection of premium staple pieces designed to last a lifetime. From minimalist tees to structured outerwear.
             </div>
           </div>
         </div>
