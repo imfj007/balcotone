@@ -1,30 +1,27 @@
 "use client";
-
 import { Bounded } from "./Bounded";
 import Link from "next/link";
 import Image from "next/image";
-
 const COLLECTIONS = [
   {
     id: "essentials",
     name: "Summer Essentials",
-    image: "/",
+    image: "/tshirt.jpg",
     description: "Daily staples for the modern man.",
   },
   {
     id: "outerwear",
     name: "Premium Outerwear",
-    image: "/",
+    image: "/jacket.jpg",
     description: "Structured layers for any weather.",
   },
   {
     id: "loungewear",
     name: "Cozy Loungewear",
-    image: "/",
+    image: "/hoodie.jpg",
     description: "Luxury comfort for refined relaxing.",
   },
 ];
-
 export default function CollectionsSection() {
   return (
     <Bounded className="bg-zinc-950 py-24">
@@ -34,9 +31,9 @@ export default function CollectionsSection() {
         </h2>
         <div className="mt-16 grid w-full gap-8 md:grid-cols-3">
           {COLLECTIONS.map((collection) => (
-            <Link 
-              key={collection.id} 
-              href={`/collections/${collection.id}`}
+            <Link
+              key={collection.id}
+              href={/collections/}
               className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition-all hover:scale-[1.02]"
             >
               <div className="aspect-[3/4] overflow-hidden">
@@ -54,7 +51,7 @@ export default function CollectionsSection() {
                   {collection.description}
                 </p>
                 <span className="mt-4 inline-block font-bold text-white uppercase tracking-tighter">
-                  View Collection →
+                  View Collection
                 </span>
               </div>
             </Link>
