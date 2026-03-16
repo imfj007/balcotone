@@ -8,19 +8,19 @@ const COLLECTIONS = [
   {
     id: "essentials",
     name: "Summer Essentials",
-    image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    image: "/",
     description: "Daily staples for the modern man.",
   },
   {
     id: "outerwear",
     name: "Premium Outerwear",
-    image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    image: "/",
     description: "Structured layers for any weather.",
   },
   {
     id: "loungewear",
     name: "Cozy Loungewear",
-    image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    image: "/",
     description: "Luxury comfort for refined relaxing.",
   },
 ];
