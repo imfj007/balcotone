@@ -13,15 +13,12 @@ export function ProductItem({
 }: ProductItemProps) {
   const product = products[productId];
   const texture = useTexture(product.image);
-  const imgWidth = texture.image?.width || 800;
-  const imgHeight = texture.image?.height || 1000;
-  const aspect = imgWidth / imgHeight;
-  const planeHeight = 1.5;
-  const planeWidth = planeHeight * aspect;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
   return (
     <group {...props} dispose={null} scale={scale}>
       <mesh castShadow receiveShadow>
-        <planeGeometry args={[planeWidth, planeHeight]} />
+        <planeGeometry args={[1, 1.5]} />
         <meshStandardMaterial
           map={texture}
           transparent
@@ -31,7 +28,7 @@ export function ProductItem({
         />
       </mesh>
       <mesh position={[0, 0, -0.01]}>
-        <planeGeometry args={[planeWidth, planeHeight]} />
+        <planeGeometry args={[1, 1.5]} />
         <meshStandardMaterial color={product.accentColor} side={THREE.BackSide} />
       </mesh>
     </group>
