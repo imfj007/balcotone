@@ -113,7 +113,7 @@ const Hero = (): JSX.Element => {
             </h1>
 
             <div className="hero-subheading mt-12 text-5xl font-semibold text-zinc-400 lg:text-6xl">
-              Premium Men's Essentials
+              Minimalist Masculinity
             </div>
 
             <div className="hero-body text-2xl font-normal text-zinc-500 max-w-2xl mt-4">

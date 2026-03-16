@@ -24,10 +24,16 @@ export const products = {
     accentColor: "#374151",
   },
   casual: {
-    name: "Essentials Overshirt",
+    name: "Casual Overshirt",
     image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
     color: "#27272a",
     accentColor: "#18181b",
+  },
+  cap: {
+    name: "Signature Cap",
+    image: "https://images.unsplash.com/photo-1509198581295-469bf4753f1d?w=800",
+    color: "#000000",
+    accentColor: "#111827",
   },
 };
 
