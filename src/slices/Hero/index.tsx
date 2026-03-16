@@ -104,7 +104,7 @@ const Hero = (): JSX.Element => {
       <div className="grid">
         <div className="grid h-screen place-content-center">
           <div className="grid auto-rows-min place-items-center text-center">
-            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-white md:text-[9rem] lg:text-[13rem]">
+            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-white md:text-[9rem] lg:text-[13rem] relative z-[999]">
               <TextSplitter
                 text="Balcotone"
                 wordDisplayStyle="block"
