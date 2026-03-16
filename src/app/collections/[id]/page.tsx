@@ -7,19 +7,19 @@ import Image from "next/image";
 
 const PRODUCT_DATA = {
   essentials: [
-    { id: "tshirt", name: "Classic T-Shirt", price: "$49", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" },
-    { id: "casual", name: "Casual Overshirt", price: "$59", image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800" },
-    { id: "v-neck", name: "V-Neck Tee", price: "$49", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" },
+    { id: "tshirt", name: "Classic T-Shirt", price: "$49", image: "/tshirt.jpg" },
+    { id: "casual", name: "Casual Overshirt", price: "$59", image: "/casual.jpg" },
+    { id: "v-neck", name: "V-Neck Tee", price: "$49", image: "/tshirt.jpg" },
   ],
   outerwear: [
-    { id: "jacket", name: "Bomber Jacket", price: "$189", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" },
-    { id: "hoodie", name: "Premium Hoodie", price: "$129", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800" },
-    { id: "coat", name: "Winter Coat", price: "$249", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" },
+    { id: "jacket", name: "Bomber Jacket", price: "$189", image: "/jacket.jpg" },
+    { id: "hoodie", name: "Premium Hoodie", price: "$129", image: "/hoodie.jpg" },
+    { id: "coat", name: "Winter Coat", price: "$249", image: "/jacket.jpg" },
   ],
   loungewear: [
-    { id: "sweatpants", name: "Lounge Pants", price: "$89", image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800" },
-    { id: "sweatshirt", name: "Crew Sweatshirt", price: "$99", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800" },
-    { id: "shorts", name: "Cozy Shorts", price: "$49", image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800" },
+    { id: "sweatpants", name: "Lounge Pants", price: "$89", image: "/pants.jpg" },
+    { id: "sweatshirt", name: "Crew Sweatshirt", price: "$99", image: "/hoodie.jpg" },
+    { id: "shorts", name: "Cozy Shorts", price: "$49", image: "/casual.jpg" },
   ],
 };
 
