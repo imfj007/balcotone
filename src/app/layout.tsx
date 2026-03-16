@@ -1,10 +1,10 @@
 import localFont from 'next/font/local'
+import type { Metadata } from 'next'
 
 import "./app.css"
 import Header from "@/components/Header";
 import ViewCanvas from "@/components/ViewCanvas";
 import Footer from "@/components/Footer";
-
 
 const alpino = localFont({
   src: '../../public/fonts/Alpino-Variable.woff2',
@@ -13,6 +13,10 @@ const alpino = localFont({
   variable: '--font-alpino',
 })
 
+export const metadata: Metadata = {
+  title: "Balcotone",
+  description: "Minimalist Masculinity",
+}
 
 export default function RootLayout({
   children,
@@ -25,8 +29,8 @@ export default function RootLayout({
         <Header />
         <main> 
           {children}
-          <ViewCanvas/>
         </main>
+        <ViewCanvas/>
         <Footer/>
       </body>
     </html>

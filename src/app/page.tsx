@@ -5,9 +5,14 @@ import AlternatingText from "@/slices/AlternatingText";
 import BigText from "@/slices/BigText";
 import CollectionsSection from "@/components/CollectionsSection";
 
-export default function Index() {
+export const metadata = {
+  title: "Balcotone | Minimalist Masculinity",
+  description: "Premium men's clothing brand redefining modern masculinity with timeless designs and superior comfort.",
+};
+
+export default function HomePage() {
   return (
-    <main>
+    <main className="bg-black">
       <Hero />
       <SkyDive />
       <AlternatingText />
