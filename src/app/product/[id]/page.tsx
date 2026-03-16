@@ -10,22 +10,61 @@ const PRODUCT_DETAILS = {
     name: "Classic White T-Shirt",
     price: "$49.00",
     description: "The pillar of any modern wardrobe. Our Classic T-Shirt is crafted from 100% premium long-staple cotton for a soft hand-feel and long-lasting durability.",
-    images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800", "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800", "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800"],
+    images: [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800"
+    ],
     sizes: ["S", "M", "L", "XL", "XXL"],
   },
   hoodie: {
     name: "Premium Black Hoodie",
     price: "$129.00",
-    description: "Ultimate comfort met with structured design. Heavyweight fleece that maintains its shape, year after year.",
-    images: ["https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800", "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800", "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800"],
+    description: "Ultimate comfort met with structured design. Heavyweight fleece that maintains its shape, year after year. Designed for the ambitious man.",
+    images: [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800"
+    ],
     sizes: ["S", "M", "L", "XL"],
   },
   jacket: {
     name: "Navy Bomber Jacket",
     price: "$189.00",
-    description: "A timeless silhouette refined for the modern man. Weather-resistant outer shell with a silk-soft lining.",
-    images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800", "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800", "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"],
+    description: "A timeless silhouette refined for the modern man. Weather-resistant outer shell with a silk-soft lining. Premium quality for the winter collection.",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+    ],
     sizes: ["M", "L", "XL"],
+  },
+  sweatpants: {
+    name: "Grey Lounge Pants",
+    price: "$89.00",
+    description: "The ultimate in relaxation. Our lounge pants offer a tapered fit and breathable fabric, perfect for casual days or home comfort.",
+    images: [
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800",
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800",
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800",
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800"
+    ],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  overshirt: {
+    name: "Casual Overshirt",
+    price: "$99.00",
+    description: "A versatile layer for the transition seasons. This overshirt combines the structure of a jacket with the comfort of a shirt.",
+    images: [
+      "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
+      "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
+      "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
+      "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800"
+    ],
+    sizes: ["S", "M", "L", "XL"],
   },
 };
 
@@ -43,7 +82,7 @@ export default function SingleProductPage() {
         <div className="grid gap-16 md:grid-cols-2">
           {/* Image Gallery */}
           <div className="flex flex-col gap-4">
-            <div className="aspect-[3/4] overflow-hidden rounded-3xl bg-zinc-900">
+            <div className="aspect-[3/4] overflow-hidden rounded-3xl bg-zinc-900 border border-zinc-800">
               <Image
                 src={product.images[activeImage]}
                 alt={product.name}
@@ -52,7 +91,7 @@ export default function SingleProductPage() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {product.images.map((img, idx) => (
                 <button
                   key={idx}

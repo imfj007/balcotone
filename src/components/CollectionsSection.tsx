@@ -6,22 +6,22 @@ import Image from "next/image";
 
 const COLLECTIONS = [
   {
-    id: "essentials",
-    name: "Essentials",
+    id: "summer",
+    name: "Summer Collection",
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
-    description: "Daily staples for the modern man.",
+    description: "Lightweight fabrics for the heat.",
   },
   {
-    id: "outerwear",
-    name: "Outerwear",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
-    description: "Structured layers for any weather.",
-  },
-  {
-    id: "loungewear",
-    name: "Loungewear",
+    id: "winter",
+    name: "Winter Collection",
     image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
-    description: "Luxury comfort for refined relaxing.",
+    description: "Premium warmth for the cold.",
+  },
+  {
+    id: "casual",
+    name: "Casual Collection",
+    image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
+    description: "Everyday comfort with style.",
   },
 ];
 

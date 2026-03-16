@@ -23,11 +23,11 @@ export const products = {
     color: "#4b5563",
     accentColor: "#374151",
   },
-  cap: {
-    name: "Signature Cap",
-    image: "https://images.unsplash.com/photo-1509198581295-469bf4753f1d?w=800",
-    color: "#111827",
-    accentColor: "#000000",
+  casual: {
+    name: "Essentials Overshirt",
+    image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800",
+    color: "#27272a",
+    accentColor: "#18181b",
   },
 };
 

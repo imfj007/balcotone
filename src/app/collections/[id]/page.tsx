@@ -6,18 +6,20 @@ import Link from "next/link";
 import Image from "next/image";
 
 const PRODUCT_DATA = {
-  essentials: [
+  summer: [
     { id: "tshirt", name: "Classic T-Shirt", price: "$49", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" },
     { id: "v-neck", name: "V-Neck Tee", price: "$49", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" },
-    { id: "tshirt-black", name: "Black Edition Tee", price: "$59", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" },
+    { id: "shorts", name: "Summer Shorts", price: "$59", image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800" },
   ],
-  outerwear: [
-    { id: "jacket", name: "Bomber Jacket", price: "$189", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" },
+  winter: [
     { id: "hoodie", name: "Premium Hoodie", price: "$129", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800" },
+    { id: "jacket", name: "Bomber Jacket", price: "$189", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" },
+    { id: "coat", name: "Winter Coat", price: "$249", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" },
   ],
-  loungewear: [
+  casual: [
     { id: "sweatpants", name: "Lounge Pants", price: "$89", image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800" },
-    { id: "sweatshirt", name: "Crew Sweatshirt", price: "$99", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800" },
+    { id: "overshirt", name: "Casual Overshirt", price: "$99", image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800" },
+    { id: "cap", name: "Signature Cap", price: "$39", image: "https://images.unsplash.com/photo-1509198581295-469bf4753f1d?w=800" },
   ],
 };
 
@@ -35,7 +37,7 @@ export default function SingleCollectionPage() {
         <div className="grid gap-12 md:grid-cols-3">
           {products.map((product) => (
             <div key={product.id} className="group">
-              <Link href={`/products/${product.id}`}>
+              <Link href={`/product/${product.id}`}>
                 <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-zinc-900">
                   <Image
                     src={product.image}
